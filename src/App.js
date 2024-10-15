@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Alterando para Routes
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from "./components/header";
 import ListarTarefa from "./pages/tarefa/ListarTarefa";
-import SettingsModal from './components/SettingsModal'; // Importe o modal de configurações
+import SettingsModal from './components/SettingsModal';
 
 function App() {
     const [theme, setTheme] = useState('light');
@@ -24,7 +24,7 @@ function App() {
 
     // UseEffect para aplicar o estilo ao body com base no tema
     useEffect(() => {
-        document.body.style.background = theme === 'dark' ? '#1e1e1e' : '#ffffff'; // Ajuste a cor de fundo
+        document.body.style.background = theme === 'dark' ? '#1e1e1e' : '#ffffff';
     }, [theme]);
 
     const muiTheme = createTheme({
@@ -37,10 +37,15 @@ function App() {
         <ThemeProvider theme={muiTheme}>
             <Router>
                 <Header onOpenSettings={handleOpenSettings} />
-                <Routes> {/* Alterado de Switch para Routes */}
-                    {/* Defina suas rotas */}
-                    <Route path="/" element={<ListarTarefa />} /> {/* Mudança para a nova sintaxe */}
-                    <Route path="/configuracoes" element={<SettingsModal open={openSettings} onClose={handleCloseSettings} setTheme={setTheme} />} /> {/* Mudança para a nova sintaxe */}
+                <Routes>
+                    <Route path="/" element={<ListarTarefa />} />
+                    <Route path="/configuracoes" element={
+                        <SettingsModal 
+                            open={openSettings} 
+                            onClose={handleCloseSettings} 
+                            setTheme={setTheme}
+                        />
+                    } />
                 </Routes>
             </Router>
         </ThemeProvider>
