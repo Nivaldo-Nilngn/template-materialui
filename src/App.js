@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Alterando para Routes
 
 import Header from "./components/header";
 import ListarTarefa from "./pages/tarefa/ListarTarefa";
@@ -24,7 +25,7 @@ function App() {
     // UseEffect para aplicar o estilo ao body com base no tema
     useEffect(() => {
         document.body.style.background = theme === 'dark' ? '#1e1e1e' : '#ffffff'; // Ajuste a cor de fundo
-    }, [theme]); // Use o estado 'theme' aqui
+    }, [theme]);
 
     const muiTheme = createTheme({
         palette: {
@@ -34,13 +35,14 @@ function App() {
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <Header onOpenSettings={handleOpenSettings} />
-            <ListarTarefa />
-            <SettingsModal 
-                open={openSettings} 
-                onClose={handleCloseSettings} 
-                setTheme={setTheme} // Passando a função setTheme corretamente
-            />
+            <Router>
+                <Header onOpenSettings={handleOpenSettings} />
+                <Routes> {/* Alterado de Switch para Routes */}
+                    {/* Defina suas rotas */}
+                    <Route path="/" element={<ListarTarefa />} /> {/* Mudança para a nova sintaxe */}
+                    <Route path="/configuracoes" element={<SettingsModal open={openSettings} onClose={handleCloseSettings} setTheme={setTheme} />} /> {/* Mudança para a nova sintaxe */}
+                </Routes>
+            </Router>
         </ThemeProvider>
     );
 }
