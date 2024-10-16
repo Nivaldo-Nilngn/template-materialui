@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação de gerenciamento de tarefas, permitindo que os usuários criem, editem e excluam tarefas, além de configurarem o tema da interface. A aplicação foi desenvolvida utilizando as melhores práticas do React e do Material-UI, visando proporcionar uma experiência de usuário fluida e intuitiva.
 
+[**Acesse o projeto aqui**](https://template-materialui.vercel.app)
+
 ## Tecnologias Utilizadas
 
 - **React**: Biblioteca JavaScript para construir interfaces de usuário.
